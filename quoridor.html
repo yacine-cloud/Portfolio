@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quoridor – Jeu de stratégie en C</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 24px 16px 40px;
+    }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    a.back {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid #38bdf8;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    a.back:hover {
+      background: #0b1120;
+    }
+    h1 {
+      font-size: clamp(24px, 3.4vw, 30px);
+      margin-bottom: 4px;
+      color: #38bdf8;
+    }
+    .meta {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    img {
+      width: 100%;
+      border-radius: 14px;
+      margin: 18px 0;
+      display: block;
+    }
+    .section {
+      margin-top: 18px;
+    }
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #38bdf8;
+    }
+    .section p,
+    .section ul {
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+    ul {
+      padding-left: 18px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 16px;
+    }
+    @media (max-width: 720px) {
+      .two-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tags {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .tag {
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.6);
+      padding: 3px 8px;
+      background: rgba(15,23,42,0.9);
+    }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid #1f2937;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      color: #cbd5f5;
+    }
+    .bilan-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    .bilan-table th,
+    .bilan-table td {
+      border: 1px solid #1f2937;
+      padding: 6px 8px;
+      vertical-align: top;
+    }
+    .bilan-table th {
+      background: #020617;
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="index.html" class="back">← Retour à l'accueil</a>
+
+    <h1>Quoridor – Jeu de stratégie en C</h1>
+    <div class="meta">ECE – 1A cycle ingénieur · Projet C</div>
+
+    <img src="jeu.png" alt="Projet Quoridor en C">
+
+    <div class="section">
+      <h2>Objectif du projet</h2>
+      <p>
+        Implémenter en langage C le jeu de société <strong>Quoridor</strong>, un jeu de stratégie
+        pour 2 ou 4 joueurs se déroulant sur un plateau de <strong>9 × 9 cases</strong>. Chaque joueur
+        doit atteindre le bord opposé du plateau en déplaçant son pion, tout en posant des
+        barrières pour ralentir ses adversaires sans les bloquer totalement.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Contexte</h2>
+      <p>
+        Projet de groupe réalisé en 1<sup>ère</sup> année de cycle ingénieur.
+        L’objectif était de concevoir un <strong>jeu complet en mode console</strong> :
+        gestion du plateau, tours de jeu, sauvegarde de partie, système de scores et
+        interface utilisateur textuelle.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Règles & mécaniques de jeu</h2>
+      <ul>
+        <li>Plateau représenté par une grille 9 × 9 où les pions se déplacent orthogonalement.</li>
+        <li>À chaque tour, un joueur peut soit déplacer son pion, soit poser une barrière.</li>
+        <li>Les barrières bloquent temporairement certains chemins, mais ne doivent jamais
+            couper définitivement l’accès à la ligne d’arrivée d’un joueur.</li>
+        <li>Le premier joueur à atteindre le bord opposé de départ gagne la partie.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Structures de données & architecture</h2>
+      <div class="two-cols">
+        <div>
+          <h3>Plateau & barrières</h3>
+          <ul>
+            <li>Tableau 2D pour représenter la grille 9 × 9 et les cases occupées.</li>
+            <li>Mise à jour des cases lors des déplacements et des placements de barrières.</li>
+            <li>Vérifications pour garantir qu’une barrière ne bloque pas totalement un joueur.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Joueurs & état de partie</h3>
+          <ul>
+            <li>Structures pour stocker nom, numéro de joueur, position (x, y) et barrières restantes.</li>
+            <li>Variables globales et locales pour gérer le tour courant, le plateau, les déplacements.</li>
+            <li>Gestion de l’ordre de jeu et de la condition de victoire.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Fonctionnalités principales</h2>
+      <ul>
+        <li><span class="pill">Plateau</span> Génération et initialisation d’une grille 9 × 9.</li>
+        <li><span class="pill">Déplacements</span> Gestion des déplacements de pions avec
+            vérification des limites et des barrières (haut, bas, gauche, droite).</li>
+        <li><span class="pill">Barrières</span> Placement de barrières avec validation de la position
+            et contrôle du nombre de barrières disponibles par joueur.</li>
+        <li><span class="pill">Tours de jeu</span> Boucle principale qui alterne les joueurs,
+            propose les actions (déplacer, poser barrière, passer, quitter) et met à jour l’état du jeu.</li>
+        <li><span class="pill">Victoire</span> Détection automatique du joueur qui atteint le bord opposé.</li>
+        <li><span class="pill">Menu</span> Écran principal : nouvelle partie, reprendre partie,
+            afficher l’aide, afficher les scores, quitter.</li>
+        <li><span class="pill">Sauvegarde</span> Sauvegarde et reprise de partie via fichiers texte.</li>
+        <li><span class="pill">Scores</span> Enregistrement et affichage des scores dans un fichier dédié.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Exigences techniques notables</h2>
+      <ul>
+        <li>Interface en mode console avec menus textuels et saisies via <code>scanf</code>.</li>
+        <li>Validation systématique des entrées utilisateur (coordonnées, choix de menu, directions).</li>
+        <li>Modularité du code : séparation en fonctions pour le plateau, les joueurs,
+            la logique de partie et l’affichage. :contentReference[oaicite:3]{index=3}</li>
+        <li>Gestion de fichiers (sauvegarde d’état, reprise de partie, stockage des scores).</li>
+        <li>Utilisation de logigrammes pour structurer le déplacement, la pose de barrières
+            et le déroulement global de la partie (diagrammes pages 10–12 du rapport).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Résultats</h2>
+      <p>
+        Le jeu se lance en console avec un <strong>menu ASCII stylisé</strong>, offrant toutes
+        les options principales (nouvelle partie, reprise, aide, scores). Le plateau et les barrières
+        sont affichés sous forme de grille textuelle (lignes/colonnes étiquetées), et les scores sont
+        présentés avec un titre « SCORE » en art ASCII.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Bilan et pistes d’amélioration</h2>
+      <table class="bilan-table">
+        <tr>
+          <th>Aspect</th>
+          <th>Résultat</th>
+          <th>Pistes d’amélioration</th>
+        </tr>
+        <tr>
+          <td>Plateau & initialisation</td>
+          <td>Fonctionnel, structures de données bien gérées.</td>
+          <td>Améliorer l’esthétique de l’affichage.</td>
+        </tr>
+        <tr>
+          <td>Placement des barrières</td>
+          <td>Fonctionnel avec logique de validation.</td>
+          <td>Renforcer le contrôle de toutes les règles de placement.</td>
+        </tr>
+        <tr>
+          <td>Déplacement des joueurs</td>
+          <td>Gestion correcte des coordonnées et collisions.</td>
+          <td>Traiter certains cas limites (bords, multiples obstacles).</td>
+        </tr>
+        <tr>
+          <td>Menu & affichage</td>
+          <td>Menus interactifs et infos joueurs affichées.</td>
+          <td>Uniformiser encore plus la mise en page texte.</td>
+        </tr>
+        <tr>
+          <td>Sauvegarde / reprise & scores</td>
+          <td>Fichiers fonctionnels pour l’état de partie et les scores.</td>
+          <td>Mieux gérer les fichiers inexistants/corrompus et le format des scores.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Compétences développées</h2>
+      <ul>
+        <li>Programmation en C structurée et modulaire.</li>
+        <li>Modélisation de jeu de plateau : grille, joueurs, barrières, règles.</li>
+        <li>Gestion de fichiers pour la persistance des données.</li>
+        <li>Conception d’algorithmes de déplacement et validation de coups.</li>
+        <li>Travail en équipe avec répartition des tâches et commits GitHub.</li>
+      </ul>
+    </div>
+
+    <div class="tags">
+      <span class="tag">C</span>
+      <span class="tag">Jeu de stratégie</span>
+      <span class="tag">Quoridor</span>
+      <span class="tag">Structures de données</span>
+      <span class="tag">Algorithmes</span>
+      <span class="tag">Fichiers & sauvegarde</span>
+      <span class="tag">Projet de groupe</span>
+    </div>
+  </div>
+</body>
+</html>

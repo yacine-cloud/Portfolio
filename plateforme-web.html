@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>ECE In – Plateforme de réseau social professionnel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      margin: 0;
+      padding: 24px 16px 40px;
+    }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    a.back {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid #38bdf8;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    a.back:hover {
+      background: #0b1120;
+    }
+    h1 {
+      font-size: clamp(24px, 3.4vw, 30px);
+      margin-bottom: 4px;
+      color: #38bdf8;
+    }
+    .meta {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+    img {
+      width: 100%;
+      border-radius: 14px;
+      margin: 18px 0;
+      display: block;
+    }
+    .section {
+      margin-top: 18px;
+    }
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #38bdf8;
+    }
+    .section p,
+    .section ul {
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+    ul {
+      padding-left: 18px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 16px;
+    }
+    @media (max-width: 720px) {
+      .two-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tags {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .tag {
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.6);
+      padding: 3px 8px;
+      background: rgba(15,23,42,0.9);
+    }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid #1f2937;
+      margin-right: 6px;
+      margin-bottom: 4px;
+      color: #cbd5f5;
+    }
+    .repo-link {
+      margin-top: 14px;
+      font-size: 13px;
+    }
+    .repo-link a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    .repo-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---- Carrousel automatique ---- */
+    .auto-carousel {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 16px;
+    }
+
+    .auto-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   
+    background: #0f172a;  
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    cursor: pointer;
+    }
+
+
+    .auto-carousel img.active {
+    opacity: 1;
+    }
+
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a href="index.html" class="back">← Retour à l'accueil</a>
+
+    <h1>ECE In – Plateforme de réseau social professionnel</h1>
+    <div class="meta">ECE – ING3 Web dynamique · 2024</div>
+
+    <img src="acceuil.png" alt="Plateforme web ECE In">
+
+    <div class="section">
+      <h2>Objectif du projet</h2>
+      <p>
+        Concevoir et développer <strong>ECE In</strong>, une plateforme web de type
+        <strong>réseau social professionnel</strong> pour la communauté ECE Paris
+        (étudiants, enseignants, alumni, personnels). Le site permet aux utilisateurs
+        de construire leur profil, gérer leur réseau, publier des contenus et accéder
+        à des opportunités d’emploi et de stage.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Contexte</h2>
+      <p>
+        Projet « piscine » de <strong>Web dynamique ING3</strong> réalisé en trinôme/quadrinôme.
+        L’application est une architecture <strong>client–serveur</strong> avec base de données
+        relationnelle (MySQL), back-end en <strong>PHP</strong> et front-end en
+        <strong>HTML / CSS / JavaScript</strong>, le tout versionné avec Git.
+      </p>
+      <p>
+        Le sujet impose de se rapprocher des fonctionnalités d’un LinkedIn interne à l’ECE :
+        gestion de profils, réseau, messagerie, publications, emplois, administration des
+        utilisateurs et gestion des droits.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Fonctionnalités principales</h2>
+      <div class="two-cols">
+        <div>
+          <h3>Pages & navigation</h3>
+          <ul>
+            <li><strong>Accueil</strong> : présentation d’ECE In, « événement de la semaine »,
+                carrousel d’images, flux d’évènements du réseau.</li>
+            <li><strong>Mon Réseau</strong> : liste des contacts avec photo, description, liens vers
+                leurs profils et suggestions de nouveaux contacts.</li>
+            <li><strong>Vous</strong> : page profil avec parcours de formation, projets, expériences
+                et CV généré automatiquement à partir des données stockées.</li>
+            <li><strong>Notifications</strong> : événements liés à l’école, aux partenaires et au réseau
+                (conférences, bourses, nouveaux postes, réussites des contacts).</li>
+            <li><strong>Messagerie</strong> : chat texte entre membres, avec historique des échanges.</li>
+            <li><strong>Emplois</strong> : liste d’offres (CDI, CDD, stages, alternances) liées à l’école
+                et à ses partenaires.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Social & contenu</h3>
+          <ul>
+            <li>Publication d’<strong>événements</strong>, photos, vidéos et CV sur son mur.</li>
+            <li>Paramètres de visibilité (public, amis seulement, sélection de contacts).</li>
+            <li>Réactions aux contenus du réseau : like, commentaire, partage.</li>
+            <li>Création et gestion d’<strong>albums photos</strong>.</li>
+            <li>Gestion des amis/connexions et recommandations (amis d’amis).</li>
+            <li>Prise en compte de jours spéciaux (Noël, fêtes…) via thèmes graphiques
+                adaptés.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Gestion des utilisateurs & sécurité</h2>
+      <ul>
+        <li>Deux types de comptes : <strong>auteur</strong> (utilisateur classique) et
+            <strong>administrateur</strong>.</li>
+        <li>Inscription / création de compte par un administrateur avec adresse ECE,
+            pseudo et nom, stockés en base de données.</li>
+        <li>Authentification avec vérification des identifiants, gestion de sessions et
+            protection des pages réservées.</li>
+        <li>Interface admin pour ajouter/supprimer des comptes (ex-membres, nouveaux étudiants, etc.).</li>
+        <li>Gestion des droits d’accès aux contenus en fonction du type d’utilisateur et
+            des paramètres de confidentialité choisis.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Architecture technique</h2>
+      <div class="two-cols">
+        <div>
+          <h3>Front-end</h3>
+          <ul>
+            <li>Pages HTML structurées autour d’un header/nav, d’un contenu central
+                et d’un footer.</li>
+            <li>Feuilles de style CSS pour le layout, la responsivité et les thèmes de couleurs.</li>
+            <li>JavaScript pour les interactions : menus, carrousel, mises à jour dynamiques, etc.</li>
+            <li>Possibilité d’utiliser un framework CSS (ex. Bootstrap) pour accélérer
+                la mise en forme.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Back-end & base de données</h3>
+          <ul>
+            <li>Back-end en <strong>PHP</strong> : gestion des formulaires, de la logique métier
+                et des sessions.</li>
+            <li>Base de données <strong>MySQL</strong> avec tables pour les utilisateurs,
+                connexions, messages, posts, événements, offres d’emploi, etc.</li>
+            <li>Conception via modèle entité association puis modèle relationnel
+                (tables, clés primaires, clés étrangères).</li>
+            <li>Scripts SQL d’import/export pour initialiser la base et la livrer.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Rôle personnel & développement</h2>
+      <ul>
+        <li>Participation au <strong>développement full-stack</strong> (front + back) : HTML/CSS,
+            JavaScript, PHP, MySQL.</li>
+        <li>Implémentation d’un <strong>système d’authentification sécurisé</strong> avec gestion
+            des sessions et séparation auteur / administrateur.</li>
+        <li>Contribution à la mise en place de la base de données et des requêtes (CRUD
+            pour utilisateurs, posts, commentaires, etc.).</li>
+        <li>Travail sur les pages dynamiques : flux de posts, interactions (like, commentaire),
+            affichage du réseau et des profils.</li>
+        <li>Utilisation de Git (GitHub) pour le versioning et la répartition des tâches.</li>
+      </ul>
+
+      <div class="repo-link">
+        Dépôt du projet :  
+        <a href="https://github.com/yacine-cloud/projet-web" target="_blank" rel="noopener noreferrer">
+          github.com/yacine-cloud/projet-web
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Résultats</h2>
+      <p>
+        La plateforme fournit un réseau social professionnel fonctionnel pour les membres
+        de l’ECE : chaque utilisateur peut gérer son profil, son réseau, publier des contenus,
+        consulter des opportunités d’emploi et interagir avec la communauté via notifications
+        et messagerie. L’ensemble respecte les contraintes du sujet (fonctionnalités, technologies,
+        deadlines et livrables de soutenance).
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Galerie du site</h2>
+      <p>Quelques captures de l'application web ECE In : connexion, profil, feed, réseau et administration.</p>
+
+      <div class="carousel auto-carousel">
+        <img src="log.png"    alt="Page de connexion"                       onclick="openLightbox(this.src)">
+        <img src="profil.png" alt="Page modification du profil"            onclick="openLightbox(this.src)">
+        <img src="feed.png"   alt="Page feed et publication de posts"      onclick="openLightbox(this.src)">
+        <img src="ami.png"    alt="Gestion du réseau et demandes d'amis"   onclick="openLightbox(this.src)">
+        <img src="admin.png"  alt="Page admin gestion utilisateurs/posts" onclick="openLightbox(this.src)">
+      </div>
+
+    </div>
+
+    <!-- Lightbox (zoom) -->
+    <div class="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Capture agrandie">
+    </div>
+
+    <div class="section">
+      <h2>Compétences développées</h2>
+      <ul>
+        <li>Développement web full-stack (HTML, CSS, JavaScript, PHP, MySQL).</li>
+        <li>Conception et implémentation d’une base de données relationnelle.</li>
+        <li>Gestion d’authentification et de sessions utilisateurs.</li>
+        <li>Architecture client–serveur et structuration d’un site dynamique complexe.</li>
+        <li>Travail en équipe, gestion de projet et versioning Git.</li>
+      </ul>
+    </div>
+
+    <div class="tags">
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">PHP</span>
+      <span class="tag">MySQL</span>
+      <span class="tag">Full-stack</span>
+      <span class="tag">Réseau social</span>
+      <span class="tag">Authentification</span>
+      <span class="tag">Git</span>
+    </div>
+  </div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const slides = document.querySelectorAll('.auto-carousel img');
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((img, n) => img.classList.toggle("active", n === i));
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    showSlide(index);
+
+    setInterval(nextSlide, 5000);
+
+    slides.forEach(img => {
+      img.addEventListener("click", nextSlide);
+    });
+
+  });
+  </script>
+
+
+
+</body>
+</html>
