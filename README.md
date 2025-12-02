@@ -1,4 +1,4 @@
-Portfolio – Projets d’ingénieur & développement
+## Portfolio : Projets d’ingénieur & développement
 
 Bienvenue dans mon **portfolio personnel**, un site web regroupant l’ensemble de mes projets réalisés en école d’ingénieur (ECE Paris), au lycée, et en autodidacte.  
 Il présente mes travaux en :
