@@ -2,163 +2,550 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio – Accueil</title>
+  <title>Portfolio – Yacine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      margin: 0;
-      padding: 24px 16px 40px;
-    }
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    h1 {
-      margin: 8px 0;
-      font-size: clamp(26px, 4vw, 34px);
-      color: #38bdf8;
-    }
-    .subtitle {
-      color: #cbd5f5;
-      font-size: 15px;
-      max-width: 650px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-    .grid {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-    }
-    .card {
-      background: #020617;
-      border-radius: 16px;
-      overflow: hidden;
-      text-align: left;
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid #1f2937;
-      transition: 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 30px rgba(15,23,42,0.75);
-      border-color: #38bdf8;
-    }
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      display: block;
-    }
-    .card-body {
-      padding: 12px 14px 14px;
-    }
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #38bdf8;
-      margin-bottom: 4px;
-    }
-    .card-meta {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-bottom: 6px;
-    }
-    .card-text {
-      font-size: 13px;
-      color: #cbd5f5;
-    }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0A192F;
+  color: #E5E7EB;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- NAVIGATION HAUT ---------- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+nav.transparent {
+  background: rgba(10, 25, 47, 0.25);
+}
+
+nav.scrolled {
+  background: rgba(10, 25, 47, 0.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+nav a {
+  color: #E5E7EB;
+  text-decoration: none;
+  margin-left: 22px;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+nav a:hover {
+  color: #64FFDA;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  border: 2px solid #64FFDA;
+  border-radius: 6px;
+  color: #64FFDA;
+  margin-left: 20px;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #64FFDA;
+  color: #0A192F;
+}
+
+/* ---------- MENU VERTICAL ---------- */
+.side-nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 2000;
+}
+
+.side-nav a {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1e293b;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.side-nav a.active {
+  background: #64FFDA;
+  transform: scale(1.2);
+}
+
+.side-nav a img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.side-nav a.active img {
+  filter: none;
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    display: none;
+  }
+}
+
+/* ---------- PAGE ---------- */
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 16px 80px;
+}
+
+/* ---------- HERO ---------- */
+header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 42px);
+  color: #64FFDA;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #A8B2D1;
+  font-size: 16px;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.btn-cv {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 22px;
+  border-radius: 6px;
+  border: 2px solid #64FFDA;
+  color: #64FFDA;
+  font-weight: 600;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.btn-cv:hover {
+  background: #64FFDA;
+  color: #0A192F;
+}
+
+/* ---------- TITRES ---------- */
+h2 {
+  color: #64FFDA;
+  font-size: 26px;
+  margin-bottom: 20px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* ---------- CARTES VERSION B ---------- */
+.project-card {
+  display: flex;
+  background: #112240;
+  border-radius: 14px;
+  border: 1px solid #1F2937;
+  overflow: hidden;
+  margin-bottom: 26px;
+  transition: 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(2, 12, 27, 0.7);
+  border-color: #64FFDA;
+}
+
+.project-card img {
+  width: 40%;
+  object-fit: cover;
+  background: #0A192F;
+}
+
+.project-content {
+  padding: 20px 24px;
+  width: 60%;
+}
+
+.project-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #64FFDA;
+  margin-bottom: 6px;
+}
+
+.project-meta {
+  font-size: 13px;
+  color: #94A3B8;
+  margin-bottom: 12px;
+}
+
+.project-text {
+  font-size: 15px;
+  color: #CBD5F5;
+  line-height: 1.55;
+}
+
+@media (max-width: 780px) {
+  .project-card {
+    flex-direction: column;
+  }
+  .project-card img {
+    width: 100%;
+    height: 180px;
+  }
+  .project-content {
+    width: 100%;
+  }
+}
+
+/* ---------- COMPÉTENCES ---------- */
+.skills {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.8;
+  color: #A8B2D1;
+  font-size: 16px;
+}
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(17,34,64,0.9);
+  border: 1px solid #64FFDA;
+  color: #64FFDA;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+.badge:hover {
+  background: #64FFDA;
+  color: #0A192F;
+  transform: translateY(-3px);
+}
+
+
+/* ---------- CONTACT ---------- */
+.contact {
+  text-align: center;
+  margin-top: 40px;
+  color: #A8B2D1;
+  font-size: 16px;
+}
+
+.contact a {
+  color: #64FFDA;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: #94A3B8;
+  font-size: 14px;
+  margin-top: 60px;
+  border-top: 1px solid #1E293B;
+}
+
   </style>
 </head>
-
 <body>
-  <div class="page">
-    <header>
-      <h1>Bienvenue dans mon Portfolio</h1>
-      <p class="subtitle">
-        Je suis passionnée par le code, l’électronique et l’apprentissage.  
-        J’aime découvrir de nouvelles choses, construire, tester, expérimenter  
-        et comprendre comment tout fonctionne que ce soit dans le web,  
-        les systèmes embarqués ou la programmation.  
-        Voici une sélection de mes projets.
-      </p>
-    </header>
 
-    <main>
-      <div class="grid">
+<!-- MENU VERTICAL FLOTTANT -->
+<div class="side-nav">
+  <a href="#top" id="dot-top"><img src="home.png" alt="Accueil"></a>
+  <a href="#projects" id="dot-projects"><img src="project.png" alt="Projets"></a>
+  <a href="#skills" id="dot-skills"><img src="skills.png" alt="Compétences"></a>
+  <a href="#contact" id="dot-contact"><img src="mail.png" alt="Contact"></a>
+</div>
 
-        <a href="jeu-microcontroleur.html" class="card">
-          <img src="microcontroleur.png" alt="Jeu embarqué microcontroleur">
-          <div class="card-body">
-            <div class="card-title">Jeu embarqué sur microcontrôleur</div>
-            <div class="card-meta">ECE – 2A cycle ingénieur · 2025</div>
-            <div class="card-text">
-              Jeu complet type Flappy Bird sur PIC, GLCD, capteurs, USB & Python.
-            </div>
-          </div>
-        </a>
-
-        <a href="radio-arduino.html" class="card">
-          <img src="arduino.png" alt="Système radio Arduino">
-          <div class="card-body">
-            <div class="card-title">Système de radio Arduino</div>
-            <div class="card-meta">ECE – 1A cycle ingénieur · 2024</div>
-            <div class="card-text">
-              Modulation, démodulation, diodes, transistors, traitement audio.
-            </div>
-          </div>
-        </a>
-
-        <a href="plateforme-web.html" class="card">
-          <img src="eceIn.png" alt="Plateforme web">
-          <div class="card-body">
-            <div class="card-title">Plateforme web (ECE In)</div>
-            <div class="card-meta">ECE – 1A cycle ingénieur · 2024</div>
-            <div class="card-text">
-              Réseau social professionnel complet en PHP/MySQL.
-            </div>
-          </div>
-        </a>
-
-        <a href="quoridor.html" class="card">
-          <img src="quoridor.png" alt="Quoridor en C">
-          <div class="card-body">
-            <div class="card-title">Jeu Quoridor en C</div>
-            <div class="card-meta">ECE – 1A cycle ingénieur · 2024</div>
-            <div class="card-text">
-              IA simple, déplacements, barrières, sauvegardes de partie.
-            </div>
-          </div>
-        </a>
-
-        <!--
-        <a href="voiture-autonome.html" class="card">
-          <img src="" alt="Voiture autonome">
-          <div class="card-body">
-            <div class="card-title">Voiture autonome</div>
-            <div class="card-meta">CPGE · 2024</div>
-            <div class="card-text">
-              Traitement d’image en Python & commande de servomoteurs.
-            </div>
-          </div>
-        </a>
-        -->
-        
-
-      </div>
-    </main>
+<!-- NAVIGATION HAUT -->
+<nav id="navbar" class="transparent">
+  <div class="nav-left">
+    <a href="#top" style="font-weight:700; color:#64FFDA;">Yacine</a>
   </div>
+
+  <div class="nav-right">
+    <a href="#projects">Projets</a>
+    <a href="#skills">Compétences</a>
+    <a href="#contact">Contact</a>
+    <a href="Yacine Brahmi CV alternance.pdf" class="nav-btn">Yacine Brahmi CV alternance</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <header id="top">
+    <h1>Bienvenue dans mon Portfolio</h1>
+    <p class="subtitle">
+      Étudiant en ingénierie passionné par le développement, l’électronique et les systèmes embarqués.  
+      J’aime comprendre, construire, expérimenter et créer des projets concrets.  
+      Voici une sélection de mes réalisations.
+    </p>
+
+    <a href="Yacine Brahmi CV alternance.pdf" class="btn-cv">Télécharger mon CV</a>
+  </header>
+
+  <!-- PROJETS -->
+  <section id="projects">
+    <h2>Mes Projets</h2>
+
+    <!-- Projet 1 -->
+    <a href="jeu-microcontroleur.html" class="project-card">
+      <img src="microcontroleur.png" alt="Jeu embarqué microcontroleur">
+      <div class="project-content">
+        <div class="project-title">Jeu embarqué sur microcontrôleur</div>
+        <div class="project-meta">ECE – 2A cycle ingénieur · 2025</div>
+        <div class="project-text">
+          Jeu complet sur microcontrôleur PIC : affichage GLCD, gestion capteurs, interruptions, USB & script Python.
+        </div>
+      </div>
+    </a>
+
+    <!-- Projet 2 -->
+    <a href="radio-arduino.html" class="project-card">
+      <img src="arduino.png" alt="Système radio Arduino">
+      <div class="project-content">
+        <div class="project-title">Système de radio Arduino</div>
+        <div class="project-meta">ECE – 1A cycle ingénieur · 2024</div>
+        <div class="project-text">
+          Chaîne radio analogique : modulation, démodulation, amplification et mesures pilotées par Arduino.
+        </div>
+      </div>
+    </a>
+
+    <!-- Projet 3 -->
+    <a href="plateforme-web.html" class="project-card">
+      <img src="eceIn.png" alt="Plateforme web">
+      <div class="project-content">
+        <div class="project-title">Plateforme web (ECE In)</div>
+        <div class="project-meta">ECE – 1A cycle ingénieur · 2024</div>
+        <div class="project-text">
+          Réseau social professionnel complet : PHP/MySQL, authentification, messagerie, posts, réseau et administration.
+        </div>
+      </div>
+    </a>
+
+    <!-- Projet 4 -->
+    <a href="quoridor.html" class="project-card">
+      <img src="quoridor.png" alt="Quoridor en C">
+      <div class="project-content">
+        <div class="project-title">Jeu Quoridor en C</div>
+        <div class="project-meta">ECE – 1A cycle ingénieur · 2024</div>
+        <div class="project-text">
+          Implémentation du jeu Quoridor : grille 9×9, déplacements, barrières, sauvegardes et logique de victoire.
+        </div>
+      </div>
+    </a>
+
+  </section>
+
+  <!-- COMPÉTENCES -->
+ <section id="skills">
+  <h2>Compétences</h2>
+
+  <!-- Développement logiciel -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Développement logiciel</h3>
+  <div class="skill-badges">
+    <span class="badge">C</span>
+    <span class="badge">C++</span>
+    <span class="badge">Python</span>
+    <span class="badge">JavaScript</span>
+    <span class="badge">Node.js</span>
+    <span class="badge">React</span>
+    <span class="badge">Programmation orientée objet</span>
+    <span class="badge">APIs</span>
+    <span class="badge">Automatisation</span>
+  </div>
+
+  <!-- Systèmes embarqués -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Systèmes embarqués</h3>
+  <div class="skill-badges">
+    <span class="badge">Arduino</span>
+    <span class="badge">ESP32</span>
+    <span class="badge">PIC</span>
+    <span class="badge">PWM</span>
+    <span class="badge">ADC</span>
+    <span class="badge">Interruptions</span>
+    <span class="badge">I2C</span>
+    <span class="badge">SPI</span>
+    <span class="badge">UART</span>
+  </div>
+
+  <!-- Électronique -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Électronique</h3>
+  <div class="skill-badges">
+    <span class="badge">Amplification</span>
+    <span class="badge">Filtres RC</span>
+    <span class="badge">Modulation</span>
+    <span class="badge">Démodulation</span>
+    <span class="badge">Transistors</span>
+    <span class="badge">Diodes</span>
+    <span class="badge">Oscilloscope</span>
+    <span class="badge">Prototypage</span>
+  </div>
+
+  <!-- Développement web -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Développement web</h3>
+  <div class="skill-badges">
+    <span class="badge">HTML</span>
+    <span class="badge">CSS</span>
+    <span class="badge">JavaScript</span>
+    <span class="badge">PHP</span>
+    <span class="badge">MySQL</span>
+    <span class="badge">CRUD</span>
+    <span class="badge">Sessions</span>
+    <span class="badge">Sécurité basique</span>
+  </div>
+
+  <!-- Outils -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Outils & Environnements</h3>
+  <div class="skill-badges">
+    <span class="badge">Git</span>
+    <span class="badge">GitHub</span>
+    <span class="badge">Linux</span>
+    <span class="badge">Docker</span>
+    <span class="badge">VS Code</span>
+    <span class="badge">Arduino IDE</span>
+    <span class="badge">MPLAB X</span>
+    <span class="badge">Figma</span>
+  </div>
+
+  <!-- Maths & Algo -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Maths & Algorithmique</h3>
+  <div class="skill-badges">
+    <span class="badge">Traitement du signal</span>
+    <span class="badge">Statistiques</span>
+    <span class="badge">Optimisation</span>
+    <span class="badge">Structures de données</span>
+    <span class="badge">Logique combinatoire</span>
+  </div>
+
+  <!-- Soft skills -->
+  <h3 style="text-align:center; color:#64FFDA; margin-top:30px;">Soft skills</h3>
+  <div class="skill-badges">
+    <span class="badge">Travail en équipe</span>
+    <span class="badge">Gestion de projet</span>
+    <span class="badge">Communication</span>
+    <span class="badge">Autonomie</span>
+    <span class="badge">Résolution de problèmes</span>
+  </div>
+
+</section>
+
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Me Contacter</h2>
+    <div class="contact">
+      📩 Email : <a href="mailto:yacine_brahmi@icloud.com">yacine_brahmi@icloud.com</a><br>
+      🔗 LinkedIn : <a href="https://linkedin.com">Mon LinkedIn</a><br>
+      💻 GitHub : <a href="https://github.com/yacine-cloud">yacine-cloud</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 — Yacine. Tous droits réservés.
+  </footer>
+
+</div>
+<script>
+// ----- NAVBAR TRANSPARENTE → OPAQUE -----
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 60) {
+    navbar.classList.remove("transparent");
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.add("transparent");
+    navbar.classList.remove("scrolled");
+  }
+});
+
+// ----- SCROLL SPY (MENU VERTICAL) -----
+const sections = {
+  top: document.getElementById("top"),
+  projects: document.getElementById("projects"),
+  skills: document.getElementById("skills"),
+  contact: document.getElementById("contact")
+};
+
+const dots = {
+  top: document.getElementById("dot-top"),
+  projects: document.getElementById("dot-projects"),
+  skills: document.getElementById("dot-skills"),
+  contact: document.getElementById("dot-contact")
+};
+
+function updateActiveDot() {
+  const scrollPos = window.scrollY + window.innerHeight / 3;
+
+  for (const key in sections) {
+    const sec = sections[key];
+    const top = sec.offsetTop;
+    const bottom = top + sec.offsetHeight;
+
+    if (scrollPos >= top && scrollPos < bottom) {
+      for (const d in dots) dots[d].classList.remove("active");
+      dots[key].classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", updateActiveDot);
+updateActiveDot();
+</script>
+
 </body>
 </html>
