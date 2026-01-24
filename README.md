@@ -1,6 +1,6 @@
 # Portfolio — Projets d’ingénierie & développement
 
-Bienvenue dans mon **portfolio technique**, qui regroupe une sélection de projets réalisés en école d’ingénieur (ECE Paris) et en autodidacte.  
+Bienvenue dans mon **portfolio technique**, qui regroupe une sélection de projets réalisés en école d’ingénieur et en autodidacte.  
 Il met en avant mes compétences en :
 
 - Développement embarqué (microcontrôleurs, capteurs, GLCD, USB…)
@@ -64,4 +64,4 @@ Chaque projet dispose d’une page dédiée comprenant :
 
 Si vous souhaitez en savoir plus ou échanger sur un projet :  
  **yacine_brahmi@icloud.com**  
- **linkedin.com/in/yacine-brahmi-450887316**
+ **https://www.linkedin.com/in/yacine-brahmi-450887316**
