@@ -26,14 +26,14 @@ Chaque projet dispose d’une page dédiée comprenant :
 
 ---
 
-## 🚀 Projets présentés
+## Projets présentés
 
-### 🎮 Jeu embarqué “FlapPIC Bird”
+### Jeu embarqué “FlapPIC Bird”
 - Développement en C + assembleur sur PIC18  
 - Affichage GLCD, gestion capteurs et interruptions  
 - Communication USB ↔ Python pour contrôle en temps réel
 
-### 🌐 Plateforme web “ECE In”
+### Plateforme web “ECE In”
 - Réseau social interne pour étudiants  
 - Stack PHP / MySQL / JavaScript  
 - Authentification, posts, feed, interface responsive
